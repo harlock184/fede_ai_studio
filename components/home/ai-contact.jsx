@@ -1,43 +1,60 @@
 import Link from "next/link";
-import { Bot, Sparkles } from "lucide-react";
 import { Section } from "@/components/ui/section";
+import { Badge } from "@/components/ui/badge";
+import { Reveal } from "@/components/ui/reveal";
 import { buttonVariants } from "@/components/ui/button";
 
 /**
- * Teaser del asistente de IA. En la v1 es un adelanto (sin chat funcional).
- * Se vuelve funcional en la Fase 3 (ver docs/roadmap.md).
+ * Asistente del studio. En esta iteración es un adelanto sin chat funcional:
+ * el campo está deshabilitado a propósito para no prometer una capacidad
+ * que todavía no existe (ver docs/roadmap.md, Fase 3).
  */
 export function AiContact() {
   return (
-    <Section id="ai-assistant" className="border-t border-border/60">
-      <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 sm:p-12">
-        <div className="pointer-events-none absolute -right-16 -top-16 size-56 rounded-full bg-gradient-signature opacity-20 blur-3xl" aria-hidden />
-        <div className="relative max-w-2xl">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/60 px-3 py-1 text-xs text-muted-foreground">
-            <Sparkles className="size-3.5 text-primary" />
-            Próximamente
-          </span>
+    <Section id="asistente" className="border-t border-border/60 py-28 sm:py-36">
+      <Reveal>
+        <div className="metallic-sheen relative overflow-hidden rounded-xl border border-border bg-card p-8 sm:p-12">
+          <div className="deep-space-glow -right-40 -top-40" aria-hidden />
 
-          <div className="mt-6 flex items-center gap-3">
-            <div className="grid size-12 place-items-center rounded-xl bg-gradient-signature/10 text-primary ring-1 ring-inset ring-primary/20">
-              <Bot className="size-6" />
+          <div className="relative z-10 max-w-2xl">
+            <Badge tone="secondary">Próximamente</Badge>
+
+            <h2 className="mt-6 text-2xl font-semibold sm:text-3xl">
+              Describe el problema que quieres resolver
+            </h2>
+
+            <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+              Nuestro asistente puede ayudarte a organizar los requerimientos de tu
+              proyecto, identificar componentes técnicos y preparar un resumen antes
+              de hablar con Federico.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <label htmlFor="assistant-prompt" className="sr-only">
+                Describe tu proyecto
+              </label>
+              <input
+                id="assistant-prompt"
+                type="text"
+                disabled
+                placeholder="Ejemplo: quiero automatizar el seguimiento de clientes de mi empresa..."
+                className="w-full rounded-md border border-input bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-70 sm:flex-1"
+              />
+              <Link
+                href="/contact"
+                className={buttonVariants({ variant: "default" })}
+              >
+                Analizar proyecto
+              </Link>
             </div>
-            <h2 className="text-2xl font-semibold sm:text-3xl">Asistente del studio</h2>
-          </div>
 
-          <p className="mt-4 text-lg text-muted-foreground">
-            Estamos construyendo un asistente de IA que responderá tus dudas sobre
-            servicios, tiempos y alcance — y te ayudará a definir tu proyecto antes
-            de siquiera agendar una llamada. Mientras tanto, escríbenos directamente.
-          </p>
-
-          <div className="mt-8">
-            <Link href="/contact" className={buttonVariants({ variant: "gradient" })}>
-              Cuéntanos tu idea
-            </Link>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Este asistente no genera cotizaciones definitivas. Su objetivo es
+              ayudarte a definir mejor tu proyecto.
+            </p>
           </div>
         </div>
-      </div>
+      </Reveal>
     </Section>
   );
 }

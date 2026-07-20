@@ -142,3 +142,28 @@ Atte. Claude Code.
 - siguiente_paso: Igual que la entrada anterior (backend de contacto/suscripción, doc de design-system). Opcional: animar un nodo del `DataNodeVisual` con pulse.
 
 Atte. Claude Code.
+
+---
+
+## [2026-07-19T18:12:00-06:00] [EXECUTION] [DONE]
+- owner: CLAUDE CODE
+- objetivo: Iteración de identidad, contenido y jerarquía visual. Alejar el sitio del tono "agencia genérica de IA" y comunicar la idea central: "La IA no reemplaza a la ingeniería. La potencia."
+- accion:
+  1. Contenido extraído a datos: `data/capabilities.js` (4 capacidades, reemplaza `data/services.js`), `data/philosophy.js` (principio central, 3 principios, 6 creencias, manifiesto, 4 valores), `data/projects.js` reescrito con los 3 sistemas reales (Zayra, ARK Construction, TBO Hotel Integration).
+  2. Hero nuevo + `components/home/system-visual.jsx`: diagrama de arquitectura operativa (clientes → API → servicios/agentes → datos con flujos etiquetados) que sustituye el dashboard ficticio (`data-node-visual.jsx` eliminado).
+  3. Tres secciones nuevas: `philosophy.jsx` (principio central), `beliefs.jsx` (declaraciones tipográficas sin íconos), `manifesto.jsx` (editorial, ancho de lectura cómodo).
+  4. Reescritos Capacidades, Sistemas, Asistente (input deshabilitado a propósito) y CTA final con el nuevo lenguaje concreto.
+  5. Navegación: Inicio/Capacidades/Sistemas/Filosofía/Journal/Contacto. Journal pasa a estado "próximamente".
+- hallazgos_observados: El punto 12.5 del brief pedía "TypeScript estricto", pero el repo es JavaScript por convención explícita en CLAUDE.md; se mantuvo JS + JSDoc y se declaró la discrepancia.
+- hallazgos_confirmados_en_codigo:
+  * Las 5 entradas previas del Journal eran artículos inventados (títulos y fechas ficticios) — se retiraron por honestidad.
+  * Bug de responsive detectado a 768px: con 6 ítems el nav desktop saturaba el header y partía el logo. Se subió el breakpoint de `md` a `lg`.
+  * `Reveal` (framer-motion whileInView) deja el contenido en opacity:0 sin JS; se añadió fallback `<noscript>` en `app/layout.jsx`.
+  * `ProjectCard` envolvía toda la tarjeta en un `<Link>`; se convirtió en `<article>` para poder ofrecer "Ver caso de estudio" y "Ver arquitectura" sin anidar enlaces (accesibilidad).
+  * Rutas conservadas (/services, /projects, /about) con solo las etiquetas renombradas, para no romper enlaces; renombrarlas exigiría redirects.
+- archivos: `data/capabilities.js` (nuevo), `data/philosophy.js` (nuevo), `data/projects.js`, `data/services.js` (eliminado), `components/home/system-visual.jsx` (nuevo), `components/home/philosophy.jsx` (nuevo), `components/home/beliefs.jsx` (nuevo), `components/home/manifesto.jsx` (nuevo), `components/home/data-node-visual.jsx` (eliminado), `components/home/hero.jsx`, `capabilities.jsx`, `featured-projects.jsx`, `ai-contact.jsx`, `final-cta.jsx`, `components/projects/project-card.jsx`, `components/layout/navbar.jsx`, `footer.jsx`, `components/ui/reveal.jsx`, `app/page.jsx`, `app/layout.jsx`, `app/services/page.jsx`, `app/projects/page.jsx`, `app/projects/[slug]/page.jsx`, `app/journal/page.jsx`, `app/about/page.jsx`.
+- pruebas: `npm run build` 13/13 rutas OK; `npm run lint` sin warnings ni errores; verificación visual en 1280 / 768 / 390 px incluyendo menú móvil; sin errores de consola.
+- artefactos: screenshots de verificación en el scratchpad de la sesión (fuera del repo).
+- siguiente_paso: CONFIRMAR datos reales de ARK y TBO (`year`, `role`, `status`, `stack`, `architecture` son andamiaje provisional). Sustituir portadas placeholder por capturas reales. Backend de contacto y asistente (Fase 2/3 del roadmap).
+
+Atte. Claude Code.

@@ -56,6 +56,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es" className={`${inter.variable} ${geist.variable} ${geistMono.variable} dark`}>
       <body className="min-h-dvh bg-background text-foreground antialiased">
+        {/* Sin JS, el contenido con animación de entrada debe verse igual. */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <Navbar />
         <main>{children}</main>
         <Footer />

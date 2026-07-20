@@ -1,8 +1,13 @@
 /**
- * Portafolio del studio.
+ * Sistemas construidos por el studio.
  * - `featured: true` → aparece en la home.
- * - Cada proyecto genera la ruta /projects/[slug].
- * - `cover` es una ruta dentro de public/ (opcional; si no existe, se muestra un placeholder).
+ * - Cada sistema genera la ruta /projects/[slug].
+ * - `label` es la categoría corta que se muestra como chip en la tarjeta.
+ *
+ * NOTA: los textos de `name`, `label` y `tagline` son los definitivos.
+ * Los campos `year`, `role`, `status`, `stack` y `architecture` de ARK y TBO
+ * son andamiaje provisional derivado de la descripción — CONFIRMAR con datos
+ * reales antes de publicar. No se registran métricas ni resultados todavía.
  *
  * @typedef {Object} ProjectLayer
  * @property {string} label
@@ -11,16 +16,16 @@
  * @typedef {Object} Project
  * @property {string} slug
  * @property {string} name
+ * @property {string} label
  * @property {string} tagline
  * @property {string} description
  * @property {string} year
  * @property {string} role
  * @property {boolean} featured
  * @property {string} status
- * @property {string} [cover]
  * @property {string} [url]
  * @property {string[]} stack
- * @property {string[]} highlights
+ * @property {string[]} [highlights]
  * @property {{ layers: ProjectLayer[] }} [architecture]
  */
 
@@ -29,20 +34,21 @@ export const projects = [
   {
     slug: "zayra",
     name: "Zayra",
-    tagline: "Plataforma B2B2C para digitalizar métodos de entrenamiento clínico.",
+    label: "Fitness SaaS",
+    tagline:
+      "Plataforma para entrenadores y alumnos con rutinas, evaluaciones, pagos, calendario, chat y automatización de procesos.",
     description:
-      "Plataforma completa para coaches y clínicas fitness: los instructores diseñan rutinas y supervisan el progreso de sus alumnos, que consumen el entrenamiento desde una app móvil. Incluye expediente vivo del alumno, pagos con Stripe Connect y paneles por rol.",
+      "Plataforma para entrenadores y alumnos con rutinas, evaluaciones, pagos, calendario, chat y automatización de procesos. Los instructores diseñan y supervisan el entrenamiento desde web; los alumnos lo consumen desde una app móvil.",
     year: "2026",
     role: "Diseño de producto + ingeniería full-stack",
     featured: true,
     status: "En producción",
-    cover: "/projects/zayra.jpg",
     stack: ["Next.js", "React Native", "Expo", "Express", "Supabase", "Stripe", "Cloud Run"],
     highlights: [
-      "4 roles (admin, instructor, nutriólogo, alumno) con control de acceso",
+      "Cuatro roles (admin, instructor, nutriólogo, alumno) con control de acceso",
       "App móvil con reproductor de entrenamiento guiado",
       "Pagos y reconciliación con Stripe Connect",
-      "Expediente vivo del alumno como bitácora de eventos",
+      "Expediente del alumno como bitácora de eventos",
     ],
     architecture: {
       layers: [
@@ -53,53 +59,50 @@ export const projects = [
     },
   },
   {
-    slug: "proyecto-demo-2",
-    name: "Proyecto Demo 2",
-    tagline: "Reemplaza este proyecto por uno real del portafolio.",
+    slug: "ark-construction",
+    name: "ARK Construction",
+    label: "Construction Software",
+    tagline:
+      "Sistema para digitalizar operaciones de construcción, centralizar información y dar seguimiento a proyectos.",
     description:
-      "Descripción de ejemplo. Edita este objeto en data/projects.js con un caso real: el problema, tu solución y el resultado medible.",
-    year: "2025",
+      "Sistema para digitalizar operaciones de construcción, centralizar información y dar seguimiento a proyectos. Sustituye el registro disperso por una fuente única de información operativa.",
+    year: "2026",
     role: "Ingeniería full-stack",
     featured: true,
     status: "Caso de estudio",
-    cover: "/projects/placeholder.jpg",
     stack: ["Next.js", "Node.js", "PostgreSQL"],
-    highlights: [
-      "Logro medible #1 (ej. -40% tiempo de proceso)",
-      "Logro medible #2",
-      "Logro medible #3",
-    ],
     architecture: {
       layers: [
-        { label: "Cliente", items: ["Web (Next.js)"] },
-        { label: "API", items: ["Node.js"] },
+        { label: "Cliente", items: ["Panel de administración (Next.js)"] },
+        { label: "API", items: ["Node.js", "Control de acceso por rol"] },
         { label: "Datos", items: ["PostgreSQL"] },
       ],
     },
   },
   {
-    slug: "proyecto-demo-3",
-    name: "Proyecto Demo 3",
-    tagline: "Otro slot de portafolio listo para tu contenido.",
+    slug: "tbo-hotel-integration",
+    name: "TBO Hotel Integration",
+    label: "Travel Technology",
+    tagline:
+      "Integración de búsqueda, disponibilidad, reservas y cancelaciones mediante una API hotelera empresarial.",
     description:
-      "Descripción de ejemplo. Cuenta una historia corta: contexto, reto técnico y cómo lo resolvió el studio.",
-    year: "2025",
-    role: "Consultoría + implementación",
-    featured: false,
+      "Integración de búsqueda, disponibilidad, reservas y cancelaciones mediante una API hotelera empresarial, expuesta a la plataforma con un modelo de datos propio y manejo de errores del proveedor.",
+    year: "2026",
+    role: "Integración e ingeniería backend",
+    featured: true,
     status: "Caso de estudio",
-    cover: "/projects/placeholder.jpg",
-    stack: ["React", "Supabase", "Vercel"],
-    highlights: ["Logro #1", "Logro #2"],
+    stack: ["Next.js", "Node.js", "REST APIs"],
     architecture: {
       layers: [
-        { label: "Cliente", items: ["React"] },
-        { label: "Backend", items: ["Supabase"] },
+        { label: "Cliente", items: ["Buscador y flujo de reserva (Next.js)"] },
+        { label: "Capa de integración", items: ["Node.js", "Normalización de respuestas", "Manejo de errores"] },
+        { label: "Servicios externos", items: ["TBO Hotel API"] },
       ],
     },
   },
 ];
 
-/** Proyectos marcados como destacados (para la home). */
+/** Sistemas marcados como destacados (para la home). */
 export const featuredProjects = projects.filter((p) => p.featured);
 
 /** @param {string} slug */

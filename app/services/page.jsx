@@ -5,108 +5,115 @@ import { Container } from "@/components/ui/container";
 import { buttonVariants } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { cn } from "@/lib/utils";
-import { services } from "@/data/services";
+import { capabilities } from "@/data/capabilities";
 
 export const metadata = {
-  title: "Servicios",
+  title: "Capacidades",
   description:
-    "Nuestras capacidades de ingeniería: producto digital a la medida, sistemas de IA aplicada, plataformas SaaS, apps móviles, automatización de procesos y consultoría técnica.",
+    "Capacidades de ingeniería de FEDE AI STUDIO: sistemas con Inteligencia Artificial, automatización empresarial, plataformas web y móviles, e integraciones y arquitectura.",
 };
 
-/**
- * Tonos rotados para el tile de ícono y los checks de cada tarjeta.
- * Clases estáticas (Tailwind no puede compilar clases dinámicas).
- */
-const TONES = [
-  { tile: "border-primary/20 bg-primary/10 text-primary", check: "text-primary" },
-  { tile: "border-secondary/20 bg-secondary/10 text-secondary", check: "text-secondary" },
-  { tile: "border-tertiary/20 bg-tertiary/10 text-tertiary", check: "text-tertiary" },
+const TILE_TONES = [
+  "border-primary/20 bg-primary/10 text-primary",
+  "border-secondary/20 bg-secondary/10 text-secondary",
+  "border-tertiary/20 bg-tertiary/10 text-tertiary",
+  "border-primary/20 bg-primary/10 text-primary",
 ];
 
-export default function ServicesPage() {
+const CHECK_TONES = [
+  "text-primary",
+  "text-secondary",
+  "text-tertiary",
+  "text-primary",
+];
+
+export default function CapabilitiesPage() {
   return (
     <>
       {/* Hero de sección */}
       <section className="relative overflow-hidden">
         <div className="deep-space-glow -right-40 -top-40" aria-hidden />
         <div className="pointer-events-none absolute inset-0 bg-grid" aria-hidden />
-        <Container className="relative z-10 py-20 sm:py-28">
+        <Container className="relative z-10 py-24 sm:py-32">
           <Reveal>
             <SectionHeading
-              className="mx-auto max-w-3xl text-center"
+              className="max-w-3xl"
               eyebrow="Capacidades"
-              title="Nuestras Capacidades de Ingeniería"
-              description="Soluciones de ingeniería pensadas para escalar. Diseñamos y construimos sistemas inteligentes que mueven la operación y sostienen el crecimiento del negocio."
+              title="Capacidades de ingeniería"
+              description="Diseñamos sistemas completos, desde la arquitectura hasta la implementación."
             />
           </Reveal>
         </Container>
       </section>
 
-      <Container className="pb-24">
-        {/* Tarjetas de servicio */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, i) => {
-            const Icon = service.icon;
-            const tone = TONES[i % TONES.length];
-            return (
-              <div
-                key={service.slug}
-                className="metallic-sheen flex flex-col rounded-xl border border-border bg-card p-6"
-              >
+      <Container className="pb-28 sm:pb-36">
+        <Reveal>
+          <div className="grid gap-6 lg:grid-cols-2">
+            {capabilities.map((capability, i) => {
+              const Icon = capability.icon;
+              return (
                 <div
-                  className={cn(
-                    "grid size-12 place-items-center rounded-lg border",
-                    tone.tile
-                  )}
+                  key={capability.slug}
+                  className="metallic-sheen flex flex-col rounded-xl border border-border bg-card p-8"
                 >
-                  <Icon className="size-6" />
-                </div>
+                  <div
+                    className={cn(
+                      "grid size-12 place-items-center rounded-lg border",
+                      TILE_TONES[i % TILE_TONES.length]
+                    )}
+                  >
+                    <Icon className="size-6" />
+                  </div>
 
-                <h2 className="mt-6 font-display text-xl font-semibold">
-                  {service.title}
-                </h2>
-                <p className="mt-3 text-muted-foreground">{service.description}</p>
+                  <h2 className="mt-6 font-display text-xl font-semibold leading-snug">
+                    {capability.title}
+                  </h2>
+                  <p className="mt-3 leading-relaxed text-muted-foreground">
+                    {capability.description}
+                  </p>
 
-                <div className="mt-6 border-t border-border pt-6">
-                  <p className="label-mono text-muted-foreground">Entregables</p>
-                  <ul className="mt-4 space-y-2.5">
-                    {service.deliverables.map((item) => (
+                  <ul className="mt-7 space-y-3 border-t border-border pt-6">
+                    {capability.items.map((item) => (
                       <li key={item} className="flex items-start gap-3 text-sm">
                         <Check
-                          className={cn("mt-0.5 size-4 shrink-0", tone.check)}
+                          className={cn(
+                            "mt-0.5 size-4 shrink-0",
+                            CHECK_TONES[i % CHECK_TONES.length]
+                          )}
                         />
                         <span className="text-muted-foreground">{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Bloque CTA */}
-        <div className="metallic-sheen relative mt-16 overflow-hidden rounded-xl border border-border bg-card p-10 text-center sm:p-14">
-          <div
-            aria-hidden
-            className="deep-space-glow pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2"
-          />
-          <div className="relative mx-auto flex max-w-2xl flex-col items-center gap-4">
-            <h2 className="font-display text-2xl font-semibold sm:text-3xl">
-              ¿No ves exactamente lo que necesitas?
-            </h2>
-            <p className="text-muted-foreground">
-              Cada proyecto es distinto. Cuéntanos tu caso y te decimos con honestidad
-              si somos el equipo indicado para construirlo.
-            </p>
-            <Link
-              href="/contact"
-              className={cn(buttonVariants({ size: "lg" }), "mt-2")}
-            >
-              Hablemos de tu proyecto
-            </Link>
+              );
+            })}
           </div>
-        </div>
+        </Reveal>
+
+        {/* CTA */}
+        <Reveal>
+          <div className="metallic-sheen relative mt-16 overflow-hidden rounded-xl border border-border bg-card p-10 text-center sm:p-14">
+            <div className="deep-space-glow -right-40 -top-40" aria-hidden />
+            <div className="relative z-10 mx-auto max-w-2xl">
+              <h2 className="text-balance text-2xl font-semibold sm:text-3xl">
+                ¿Tu caso no encaja exactamente en una capacidad?
+              </h2>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                Cuéntanos qué proceso quieres mejorar o qué producto quieres
+                desarrollar. Te decimos con honestidad si somos el equipo indicado.
+              </p>
+              <div className="mt-8">
+                <Link
+                  href="/contact"
+                  className={buttonVariants({ variant: "default", size: "lg" })}
+                >
+                  Hablar sobre mi proyecto
+                </Link>
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </Container>
     </>
   );

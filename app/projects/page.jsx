@@ -5,9 +5,9 @@ import { Reveal } from "@/components/ui/reveal";
 import { projects } from "@/data/projects";
 
 export const metadata = {
-  title: "Proyectos",
+  title: "Sistemas",
   description:
-    "Portafolio de FEDE AI STUDIO: plataformas, apps móviles y sistemas de IA que hemos diseñado y construido.",
+    "Sistemas construidos por FEDE AI STUDIO: productos, integraciones y plataformas creadas para resolver necesidades reales.",
 };
 
 export default function ProjectsPage() {
@@ -20,9 +20,10 @@ export default function ProjectsPage() {
         <Container className="relative z-10 pt-20 pb-10 sm:pt-28">
           <Reveal>
             <SectionHeading
-              eyebrow="Portafolio"
-              title="Proyectos seleccionados"
-              description="Arquitectura técnica de alto impacto: desde plataformas B2B2C hasta motores de automatización e IA. Ingeniería minimalista pensada para desempeño y confiabilidad. Haz clic en cualquiera para ver el caso completo."
+              className="max-w-3xl"
+              eyebrow="Sistemas"
+              title="Sistemas que hemos construido"
+              description="Productos, integraciones y plataformas creadas para resolver necesidades reales."
             />
           </Reveal>
         </Container>

@@ -1,16 +1,17 @@
 import Link from "next/link";
-import { Gauge, ShieldCheck, TrendingUp, Sparkles, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Section } from "@/components/ui/section";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { cn } from "@/lib/utils";
+import { corePrinciple, values } from "@/data/philosophy";
 
 export const metadata = {
-  title: "El studio",
+  title: "Filosofía",
   description:
-    "FEDE AI STUDIO: un estudio de ingeniería enfocado en construir software y sistemas de IA con criterio y a la medida.",
+    "La filosofía de FEDE AI STUDIO: la Inteligencia Artificial no reemplaza a la ingeniería, la potencia. Primero el problema, después la arquitectura, al final las herramientas.",
 };
 
 const TILE_TONES = {
@@ -18,37 +19,6 @@ const TILE_TONES = {
   secondary: "border-secondary/20 bg-secondary/10 text-secondary",
   tertiary: "border-tertiary/20 bg-tertiary/10 text-tertiary",
 };
-
-const PRINCIPLES = [
-  {
-    icon: Gauge,
-    tone: "primary",
-    title: "Ingeniería, no improvisación",
-    description:
-      "Escribimos código pensado para mantenerse y crecer. Nada de prototipos frágiles disfrazados de producto.",
-  },
-  {
-    icon: ShieldCheck,
-    tone: "secondary",
-    title: "Honestidad técnica",
-    description:
-      "Te decimos qué se puede, qué no, y cuánto cuesta de verdad. Sin humo ni promesas infladas.",
-  },
-  {
-    icon: TrendingUp,
-    tone: "tertiary",
-    title: "Foco en el negocio",
-    description:
-      "La tecnología es un medio. Construimos lo que mueve tu negocio, no lo que se ve bonito en un pitch.",
-  },
-  {
-    icon: Sparkles,
-    tone: "primary",
-    title: "IA con criterio",
-    description:
-      "Usamos IA donde genera valor real, con las barreras de seguridad correctas — no porque esté de moda.",
-  },
-];
 
 export default function AboutPage() {
   return (
@@ -60,18 +30,14 @@ export default function AboutPage() {
 
         <Container className="relative z-10 py-24 sm:py-32">
           <Reveal className="max-w-3xl">
-            <Badge tone="secondary">Nuestra misión</Badge>
+            <Badge tone="secondary">{corePrinciple.eyebrow}</Badge>
 
-            <h1 className="mt-6 font-display text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              Hacemos accesible la{" "}
-              <span className="text-gradient">ingeniería de IA</span> para empresas
-              que van en serio.
+            <h1 className="mt-6 text-balance font-display text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+              {corePrinciple.title}
             </h1>
 
-            <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-              No construimos simples aplicaciones; diseñamos sistemas inteligentes con
-              estándares técnicos altos y foco en el negocio. Software bien pensado,
-              bien construido y listo para producción.
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+              {corePrinciple.body}
             </p>
           </Reveal>
         </Container>
@@ -88,26 +54,26 @@ export default function AboutPage() {
         </h2>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {PRINCIPLES.map((principle) => {
-            const Icon = principle.icon;
+          {values.map((value) => {
+            const Icon = value.icon;
             return (
               <div
-                key={principle.title}
+                key={value.title}
                 className="metallic-sheen rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/40"
               >
                 <div
                   className={cn(
                     "grid size-12 place-items-center rounded-lg border",
-                    TILE_TONES[principle.tone]
+                    TILE_TONES[value.tone]
                   )}
                 >
                   <Icon className="size-6" />
                 </div>
-                <h3 className="mt-5 font-display text-lg font-semibold">
-                  {principle.title}
+                <h3 className="mt-5 font-display text-lg font-semibold leading-snug">
+                  {value.title}
                 </h3>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  {principle.description}
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {value.description}
                 </p>
               </div>
             );
@@ -153,19 +119,19 @@ export default function AboutPage() {
             aria-hidden
           />
           <div className="relative z-10 mx-auto max-w-2xl space-y-6">
-            <h2 className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
-              Únete a la vanguardia de la ingeniería de IA
+            <h2 className="text-balance font-display text-3xl font-bold tracking-tight sm:text-4xl">
+              Construyamos un sistema que genere valor real.
             </h2>
-            <p className="text-lg text-muted-foreground">
-              ¿Tienes una idea o un sistema que necesita construirse en serio? Hablemos
-              de tu proyecto y llevémoslo de cero a producción.
+            <p className="text-lg leading-relaxed text-muted-foreground">
+              Cuéntanos qué proceso quieres mejorar, qué producto quieres
+              desarrollar o qué operación deseas automatizar.
             </p>
             <div className="flex justify-center pt-2">
               <Link
                 href="/contact"
                 className={buttonVariants({ variant: "default", size: "lg" })}
               >
-                Trabajemos juntos
+                Hablar sobre mi proyecto
                 <ArrowRight />
               </Link>
             </div>

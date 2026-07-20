@@ -3,9 +3,9 @@ import { Github, Linkedin, Mail } from "lucide-react";
 import { Container } from "@/components/ui/container";
 
 const FOOTER_LINKS = [
-  { href: "/services", label: "Servicios" },
-  { href: "/projects", label: "Proyectos" },
-  { href: "/about", label: "Studio" },
+  { href: "/services", label: "Capacidades" },
+  { href: "/projects", label: "Sistemas" },
+  { href: "/about", label: "Filosofía" },
   { href: "/journal", label: "Journal" },
   { href: "/contact", label: "Contacto" },
 ];

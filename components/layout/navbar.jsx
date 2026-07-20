@@ -8,11 +8,18 @@ import { cn } from "@/lib/utils";
 import { Container } from "@/components/ui/container";
 import { Button, buttonVariants } from "@/components/ui/button";
 
+/**
+ * Rutas conservadas a propósito: solo cambian las etiquetas visibles.
+ * Renombrar los paths (/services → /capabilities, etc.) exigiría redirects
+ * y romper enlaces existentes; se puede hacer después como tarea aparte.
+ */
 const NAV_LINKS = [
-  { href: "/services", label: "Servicios" },
-  { href: "/projects", label: "Proyectos" },
-  { href: "/about", label: "Studio" },
+  { href: "/", label: "Inicio" },
+  { href: "/services", label: "Capacidades" },
+  { href: "/projects", label: "Sistemas" },
+  { href: "/about", label: "Filosofía" },
   { href: "/journal", label: "Journal" },
+  { href: "/contact", label: "Contacto" },
 ];
 
 export function Navbar() {
@@ -24,7 +31,7 @@ export function Navbar() {
       <Container className="flex h-16 items-center justify-between">
         <Link
           href="/"
-          className="flex items-center gap-2 font-display text-lg font-bold tracking-tight"
+          className="flex shrink-0 items-center gap-2 whitespace-nowrap font-display text-lg font-bold tracking-tight"
         >
           <span className="grid size-7 place-items-center rounded-md bg-primary text-sm font-bold text-primary-foreground">
             F
@@ -35,7 +42,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop */}
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {NAV_LINKS.map((link) => {
             const active = pathname === link.href;
             return (
@@ -55,9 +62,9 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <Link href="/contact" className={buttonVariants({ variant: "default", size: "sm" })}>
-            Agendar llamada
+            Hablemos
           </Link>
         </div>
 
@@ -65,7 +72,7 @@ export function Navbar() {
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden"
+          className="lg:hidden"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           onClick={() => setOpen((v) => !v)}
         >
@@ -75,7 +82,7 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {open ? (
-        <div className="border-t border-border/40 bg-background md:hidden">
+        <div className="border-t border-border/40 bg-background lg:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {NAV_LINKS.map((link) => (
               <Link
@@ -92,8 +99,8 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               className={cn(buttonVariants({ variant: "default" }), "mt-2")}
             >
-              Agendar llamada
-            </Link>
+            Hablemos
+          </Link>
           </Container>
         </div>
       ) : null}

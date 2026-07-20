@@ -88,7 +88,7 @@ export default async function ProjectDetailPage({ params }) {
           </Link>
 
           <div className="mt-8 flex flex-wrap items-center gap-2.5">
-            <Badge tone="secondary">Caso de estudio</Badge>
+            <Badge tone="secondary">{project.label ?? "Caso de estudio"}</Badge>
             <Badge tone="primary" dot>
               {project.status}
             </Badge>
@@ -169,7 +169,7 @@ export default async function ProjectDetailPage({ params }) {
 
           {/* 03 — Arquitectura del sistema */}
           {project.architecture ? (
-            <section>
+            <section id="arquitectura" className="scroll-mt-24">
               <SectionHeading
                 overline="03 — Ingeniería"
                 title="Arquitectura del sistema"

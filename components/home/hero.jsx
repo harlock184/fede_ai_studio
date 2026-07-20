@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
-import { DataNodeVisual } from "@/components/home/data-node-visual";
+import { SystemVisual } from "@/components/home/system-visual";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 16 },
@@ -23,12 +23,12 @@ export function Hero() {
       <div className="deep-space-glow -right-40 -top-52" aria-hidden />
       <div className="pointer-events-none absolute inset-0 bg-grid" aria-hidden />
 
-      <Container className="relative z-10 grid items-center gap-12 py-24 sm:py-32 lg:grid-cols-2 lg:gap-16">
+      <Container className="relative z-10 grid items-center gap-14 py-24 sm:py-32 lg:grid-cols-2 lg:gap-16">
         {/* Columna de texto */}
         <div className="flex flex-col gap-6">
           <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0}>
             <Badge tone="secondary" dot>
-              Sistemas inteligentes
+              FEDE AI STUDIO — AI Engineering
             </Badge>
           </motion.div>
 
@@ -37,9 +37,9 @@ export function Hero() {
             initial="hidden"
             animate="show"
             custom={1}
-            className="text-4xl font-bold sm:text-5xl lg:text-6xl"
+            className="text-balance text-4xl font-bold sm:text-5xl lg:text-6xl"
           >
-            AI Engineering <span className="text-primary">para empresas modernas</span>
+            Construimos software que trabaja por ti.
           </motion.h1>
 
           <motion.p
@@ -47,11 +47,11 @@ export function Hero() {
             initial="hidden"
             animate="show"
             custom={2}
-            className="max-w-xl text-lg text-muted-foreground"
+            className="max-w-xl text-lg leading-relaxed text-muted-foreground"
           >
-            Construimos software, agentes de Inteligencia Artificial y
-            automatizaciones que ayudan a las empresas a crecer. Precisión técnica
-            y diseño de alto rendimiento.
+            Diseñamos plataformas, automatizaciones y sistemas de Inteligencia
+            Artificial que simplifican procesos, conectan operaciones y ayudan a
+            las empresas a crecer.
           </motion.p>
 
           <motion.div
@@ -61,17 +61,27 @@ export function Hero() {
             custom={3}
             className="mt-2 flex flex-col gap-3 sm:flex-row"
           >
-            <Link href="/contact" className={buttonVariants({ variant: "default", size: "lg" })}>
-              Agendar llamada
+            <Link href="/services" className={buttonVariants({ variant: "default", size: "lg" })}>
+              Explorar capacidades
               <ArrowRight />
             </Link>
             <Link href="/projects" className={buttonVariants({ variant: "outline", size: "lg" })}>
-              Ver proyectos
+              Ver sistemas construidos
             </Link>
           </motion.div>
+
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            custom={4}
+            className="text-sm text-muted-foreground"
+          >
+            Ingeniería primero. Inteligencia Artificial cuando aporta valor.
+          </motion.p>
         </div>
 
-        {/* Visual abstracto de datos */}
+        {/* Diagrama de arquitectura */}
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -79,7 +89,7 @@ export function Hero() {
           custom={2}
           className="relative"
         >
-          <DataNodeVisual />
+          <SystemVisual />
         </motion.div>
       </Container>
     </section>
